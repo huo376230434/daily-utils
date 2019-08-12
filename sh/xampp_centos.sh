@@ -11,7 +11,7 @@ chkconfig --add xampp
 chkconfig xampp on
 
 echo "添加进环境变量";
-echo "\n export PATH=\"/opt/lampp/bin:$PATH\"" >> /etc/profile;
+echo "export PATH=\"/opt/lampp/bin:$PATH\"" >> /etc/profile;
 source /etc/profile;
 echo "root 密码为 $1 ";
 
