@@ -1,11 +1,9 @@
 #!/bin/sh
-yum update -y
+#yum update -y
 #wget https://liquidtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.2.21/xampp-linux-x64-7.2.21-0-installer.run
 chmod -R 777 ./xampp-linux-x64-7.2.21-0-installer.run
 echo '安装xampp';
-（
-./xampp-linux-x64-7.2.21-0-installer.run
-）
+#./xampp-linux-x64-7.2.21-0-installer.run
 echo '安装xampp完成';
 echo "开机自启动";
 ln -s /opt/lampp/xampp /etc/rc.d/init.d/xampp
