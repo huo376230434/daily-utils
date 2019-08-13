@@ -2,12 +2,20 @@
 
 function init() {
   util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
-if [ ! -e ./base.sh ]; then
+  util_url_suffix=./common/base.sh
+if [ ! -e  $util_url_suffix ]; then
 echo "要请求远程"
-wget ${util_base_url}/sh/base.sh
+
+    if [ ! -d ./common ] ;then
+        mkdir common;
+    fi
+cd common;
+wget ${util_base_url}/sh/${util_url_suffix}
+cd ../
 fi
 }
 init;
+
 
 source common/base.sh;
 
