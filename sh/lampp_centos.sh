@@ -65,7 +65,6 @@ info "添加进环境变量(如果没添加过的话)";
 info "把 lampp 加进软链接 "
 
 ln -s /opt/lampp/lampp  /usr/bin/lampp
-lampp start &
 
 str="export PATH=\"/opt/lampp/bin:\$PATH\""
 file=/etc/profile
