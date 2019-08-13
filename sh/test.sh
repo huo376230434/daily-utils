@@ -9,7 +9,7 @@ fi
 }
 init;
 
-source ./base.sh;
+source common/base.sh;
 
 #调用字符串不存在方法的demo
 str="export PATH=\"/opt/lampp/bin:\$PATH\""
