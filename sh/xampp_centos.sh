@@ -18,6 +18,28 @@ function warn() {
     echo  "\033[33m $1 \033[0m"
 }
 
+#字符串是否在文件之内
+function is_str_in_file() {
+    str=$1;
+    file=$2;
+    #echo $str;
+    res=`grep "$str" $file  `
+    count=${#res}
+    if  [ $count -gt 0 ];then
+   return 1;
+    else
+return 0;
+    fi
+}
+
+#如果字符串不存在文件中，则追加
+function append_file_if_not_exists() {
+   is_str_in_file "$1" $2
+   res=$?;
+if [ $res -eq 0 ] ; then
+   echo $1 >> $2;
+fi
+}
 
 ################## 正文 ##################
 
@@ -57,11 +79,14 @@ fi
 chkconfig --add xampp
 chkconfig xampp on
 
-echo "添加进环境变量";
-echo "export PATH=\"/opt/lampp/bin:\$PATH\"" >> /etc/profile;
-source /etc/profile;
-echo "root 密码为 $1 ";
+echo "添加进环境变量(如果没添加过的话)";
 
+str="export PATH=\"/opt/lampp/bin:\$PATH\""
+file=/etc/profile
+append_file_if_not_exists "$str" $file
+source /etc/profile;
+
+echo "root 密码为 $1 ";
 mysqladmin -uroot password $1;
 warn "还需要在phpadmin 的config.ini.php 中将密码改成现在的!";
 warn "重启";
