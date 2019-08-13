@@ -1,9 +1,18 @@
 #!/bin/sh
 
 ################## 引入 base 函数库 ##################
-source ./base.sh;
+
+function init() {
+  util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
+if [ ! -e ./base.sh ]; then
+echo "要请求远程"
+wget ${util_base_url}/sh/base.sh
+fi
+}
+init;
 
 
+source ../base.sh;
 ################## 正文 ##################
 
 
