@@ -34,10 +34,10 @@ fi
 
 #yum update -y
 xampp_install_obj=xampp-linux-x64-7.2.21-0-installer.run
-if [ ! -e ./$xampp_install_obj ]
+if [ ! -e ./$xampp_install_obj ];then
 echo '拉取xampp installer'
 wget https://liquidtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.2.21/$xampp_install_obj
-then 
+else
 echo 'xampp installer 已经存在，直接用'
 fi
 
