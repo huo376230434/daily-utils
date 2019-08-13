@@ -1,12 +1,21 @@
 #!/bin/sh
 #yum update -y
-#wget https://liquidtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.2.21/xampp-linux-x64-7.2.21-0-installer.run
+if [ ! $2 ]
+wget https://liquidtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.2.21/xampp-linux-x64-7.2.21-0-installer.run
+then 
+echo 'xampp installer 已经存在，直接用'
+fi
 chmod -R 777 ./xampp-linux-x64-7.2.21-0-installer.run
 echo '安装xampp';
-#./xampp-linux-x64-7.2.21-0-installer.run
+./xampp-linux-x64-7.2.21-0-installer.run
 echo '安装xampp完成';
 echo "开机自启动";
-ln -s /opt/lampp/xampp /etc/rc.d/init.d/xampp
+init_d_soft_link=/etc/rc.d/init.d/xampp
+
+if [ -e $init_d_soft_link ] then
+ln -s /opt/lampp/xampp  $init_d_soft_link
+fi
+
 chkconfig --add xampp
 chkconfig xampp on
 
