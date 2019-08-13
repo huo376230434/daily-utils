@@ -18,6 +18,9 @@ init;
 
 
 source common/base.sh;
+####################### 正文 ######################
+
+
 
 #调用字符串不存在方法的demo
 str="export PATH=\"/opt/lampp/bin:\$PATH\""

@@ -50,7 +50,7 @@ success '安装xampp完成';
 echo "开机自启动";
 init_d_soft_link=/etc/rc.d/init.d/xampp
 
-if [ -e $init_d_soft_link ]
+if [ ! -e $init_d_soft_link ]
 then
 ln -s /opt/lampp/xampp  $init_d_soft_link
 fi
@@ -65,7 +65,6 @@ file=/etc/profile
 append_file_if_not_exists "$str" $file
 source /etc/profile;
 
-echo "root 密码为 $1 ";
-mysqladmin -uroot password $1;
-warn "还需要在phpadmin 的config.ini.php 中将密码改成现在的!";
+mysqladmin -uroot -p password $1;
+warn "如果mysql 密码修改成功还需要在phpadmin 的config.ini.php 中将密码改成 $1";
 warn "重启";
