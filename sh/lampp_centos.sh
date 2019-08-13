@@ -12,7 +12,7 @@ fi
 init;
 
 
-source ../base.sh;
+source ./base.sh;
 ################## 正文 ##################
 
 
