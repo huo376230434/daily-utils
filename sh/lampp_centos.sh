@@ -27,8 +27,8 @@ source common/base.sh;
 if [ ! $1 ]
 then
 echo '数据库密码必填 调用格式为  '
-success "./lampp_centos.sh  \$1 \$2 ";
-echo "\$1:数据库密码 \$2:是否已经拉取过xamppintaller (默认为false 已经拉取过可传 1)"
+success "./lampp_centos.sh  \$1  ";
+echo "\$1:数据库密码 )"
 exit 0;
 fi
 
