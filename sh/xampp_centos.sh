@@ -1,5 +1,7 @@
 #!/bin/sh
 
+################## 引入 base 函数库 ##################
+
 function error() {
     echo  "\033[31m $1 \033[0m"
 }
@@ -16,6 +18,10 @@ function warn() {
     echo  "\033[33m $1 \033[0m"
 }
 
+
+################## 正文 ##################
+
+
 # 命令提示
 if [ ! $1 ]
 then
@@ -26,7 +32,6 @@ exit 0;
 fi
 
 #yum update -y
-
 
 if [ ! $2 ]
 echo '拉取xampp installer'
@@ -39,12 +44,12 @@ chmod -R 777 ./xampp-linux-x64-7.2.21-0-installer.run
 
 echo '安装xampp';
 ./xampp-linux-x64-7.2.21-0-installer.run
-echo '安装xampp完成';
+success '安装xampp完成';
+
 echo "开机自启动";
 init_d_soft_link=/etc/rc.d/init.d/xampp
 
 if [ -e $init_d_soft_link ]
-
 then
 ln -s /opt/lampp/xampp  $init_d_soft_link
 fi
@@ -53,10 +58,10 @@ chkconfig --add xampp
 chkconfig xampp on
 
 echo "添加进环境变量";
-echo "export PATH=\"/opt/lampp/bin:$PATH\"" >> /etc/profile;
+echo "export PATH=\"/opt/lampp/bin:\$PATH\"" >> /etc/profile;
 source /etc/profile;
 echo "root 密码为 $1 ";
 
 mysqladmin -uroot password $1;
-echo "还需要在phpadmin 的config.ini.php 中将密码改成现在的!";
-echo "重启";
+warn "还需要在phpadmin 的config.ini.php 中将密码改成现在的!";
+warn "重启";
