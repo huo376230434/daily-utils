@@ -1,3 +1,4 @@
+#!/bin/sh
 sudo apt update
 apt install git curl
 
