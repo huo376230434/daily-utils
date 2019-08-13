@@ -29,7 +29,7 @@ function next_tips() {
 # 命令提示
 
 # 命令提示
-# 如果lampp软链接存在，则说明已经安装过 lampp 直接进行下一步 修改密码等
+# 如果 xampp 软链接存在，则说明已经安装过 xampp 直接进行下一步 修改密码等
 if [  -e /etc/rc.d/init.d/xampp -a ! "$1"  ]
 then
 
@@ -52,10 +52,8 @@ chmod -R 777 ./xampp-linux-x64-7.2.21-0-installer.run
 
 info '安装xampp';
 ./xampp-linux-x64-7.2.21-0-installer.run
-success '安装xampp完成';
 
 info "开机自启动";
-
 ln -s /opt/lampp/xampp  /etc/rc.d/init.d/xampp
 chkconfig --add xampp
 chkconfig xampp on
