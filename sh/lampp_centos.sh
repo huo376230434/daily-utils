@@ -23,12 +23,19 @@ source common/base.sh;
 ################## 正文 ##################
 
 
+function next_tips() {
+    warn "修改数据库密码 mysqladmin -uroot -p password \$password "
+    warn "如果mysql 密码修改成功 ;还需要在phpadmin 的config.ini.php 中将密码改成 $1";
+
+
+}
 # 命令提示
-if [ ! $1 ]
+# 如果lampp软链接存在，则说明已经安装过 lampp 直接进行下一步 修改密码等
+if [  -e /usr/bin/lampp -a ! "$1"  ]
 then
-info '数据库密码必填 调用格式为  '
-success "./lampp_centos.sh  \$1  ";
-info "\$1:数据库密码 )"
+
+#mysqladmin -uroot -p password $1;
+next_tips;
 exit 0;
 fi
 
@@ -48,23 +55,23 @@ info '安装xampp';
 success '安装xampp完成';
 
 info "开机自启动";
-init_d_soft_link=/etc/rc.d/init.d/xampp
 
-if [ ! -e $init_d_soft_link ]
-then
-ln -s /opt/lampp/xampp  $init_d_soft_link
-fi
+ln -s /opt/lampp/xampp  /etc/rc.d/init.d/xampp
 
 chkconfig --add xampp
 chkconfig xampp on
 
 info "添加进环境变量(如果没添加过的话)";
+info "把 lampp 加进软链接 "
+
+ln -s /opt/lampp/lampp  /usr/bin/lampp
+lampp start &
 
 str="export PATH=\"/opt/lampp/bin:\$PATH\""
 file=/etc/profile
 append_file_if_not_exists "$str" $file
 source /etc/profile;
 
-mysqladmin -uroot -p password $1;
-warn "如果mysql 密码修改成功 ;还需要在phpadmin 的config.ini.php 中将密码改成 $1";
-warn "重启";
+warn "lampp 安装成功，请 reboot 重启，然后再执行后面的语句"
+
+next_tips;

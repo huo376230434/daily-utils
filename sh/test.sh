@@ -20,11 +20,19 @@ init;
 source common/base.sh;
 ####################### 正文 ######################
 
+echo $1;
 
+if [  -e ./profile -a ! "$1"  ];
+then
 
-#调用字符串不存在方法的demo
-str="export PATH=\"/opt/lampp/bin:\$PATH\""
-file=$PWD/profile
-echo '44'
-append_file_if_not_exists "$str" $file
+echo "执行mysql"
+exit 0;
+fi
+echo "no"
 
+##调用字符串不存在方法的demo
+#str="export PATH=\"/opt/lampp/bin:\$PATH\""
+#file=$PWD/profile
+#echo '44'
+#append_file_if_not_exists "$str" $file
+#
