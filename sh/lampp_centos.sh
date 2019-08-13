@@ -6,7 +6,7 @@ function init() {
   util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
   util_url_suffix=./common/base.sh
 if [ ! -e  $util_url_suffix ]; then
-echo "要请求远程"
+info "要请求远程"
 
     if [ ! -d ./common ] ;then
         mkdir common;
@@ -26,28 +26,28 @@ source common/base.sh;
 # 命令提示
 if [ ! $1 ]
 then
-echo '数据库密码必填 调用格式为  '
+info '数据库密码必填 调用格式为  '
 success "./lampp_centos.sh  \$1  ";
-echo "\$1:数据库密码 )"
+info "\$1:数据库密码 )"
 exit 0;
 fi
 
 #yum update -y
 xampp_install_obj=xampp-linux-x64-7.2.21-0-installer.run
 if [ ! -e ./$xampp_install_obj ];then
-echo '拉取xampp installer'
+info '拉取xampp installer'
 wget https://liquidtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.2.21/$xampp_install_obj
 else
-echo 'xampp installer 已经存在，直接用'
+info 'xampp installer 已经存在，直接用'
 fi
 
 chmod -R 777 ./xampp-linux-x64-7.2.21-0-installer.run
 
-echo '安装xampp';
+info '安装xampp';
 ./xampp-linux-x64-7.2.21-0-installer.run
 success '安装xampp完成';
 
-echo "开机自启动";
+info "开机自启动";
 init_d_soft_link=/etc/rc.d/init.d/xampp
 
 if [ ! -e $init_d_soft_link ]
@@ -58,7 +58,7 @@ fi
 chkconfig --add xampp
 chkconfig xampp on
 
-echo "添加进环境变量(如果没添加过的话)";
+info "添加进环境变量(如果没添加过的话)";
 
 str="export PATH=\"/opt/lampp/bin:\$PATH\""
 file=/etc/profile
@@ -66,5 +66,5 @@ append_file_if_not_exists "$str" $file
 source /etc/profile;
 
 mysqladmin -uroot -p password $1;
-warn "如果mysql 密码修改成功还需要在phpadmin 的config.ini.php 中将密码改成 $1";
+warn "如果mysql 密码修改成功 ;还需要在phpadmin 的config.ini.php 中将密码改成 $1";
 warn "重启";
