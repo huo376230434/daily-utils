@@ -26,14 +26,38 @@ function next_tips() {
     warn "修改数据库密码 mysqladmin -uroot -p password \$password  密码要复杂"
     warn "如果mysql 密码修改成功 ;还需要在phpadmin 的config.ini.php ; auth_type 改成cookie (一定要改成cookie ,否则就不能登录)";
 
-     warn "然后 etc/extra/httpd-xampp.con 更改
+     warn "然后 etc/extra/httpd-xampp.conf 更改
 Alias /phpmyadmin \"/opt/lampp/phpmyadmin/\"
 <Directory \"/opt/lampp/phpMyAdmin\">
 AllowOverride AuthConfig
 Require all granted";
 
 warn " lampp restartapache"
-    warn "";
+    warn "再 yum install git ";
+    warn "mkdir /var/www ";
+    warn "cd /var/www";
+
+  success "接代码，recycle_huan / recycle_nt "
+
+    warn "git clone https://git.dev.tencent.com/huo376230434/recycle_huan.git";
+    warn " chmod -R 777 application/cache";
+    warn "chmod -R 777 upload";
+    success "etc/httpd.conf  中的："
+    warn " Include etc/extra/httpd-vhosts.conf取消注释"
+    warn "<Directory />
+    AllowOverride none
+    Require all granted
+</Directory>"
+    warn "etc/extra/httpd-vhost.conf 加配置";
+    warn "<VirtualHost *:80>
+    DocumentRoot \"/var/www/recycle_huan\"
+    ServerName huan.heznn.com
+    ErrorLog \"/var/log/recycle_huan_log\"
+</VirtualHost>";
+warn " lampp restartapache"
+
+info "下面是程序修改，将CustomEnv.php.example 复制 ；改数据库配置!"
+
 }
 # 命令提示
 
@@ -48,7 +72,7 @@ exit 0;
 fi
 
 
-#yum update -y
+yum update -y
 xampp_install_obj=xampp-linux-x64-7.2.21-0-installer.run
 if [ ! -e ./$xampp_install_obj ];then
 info '拉取xampp installer'
