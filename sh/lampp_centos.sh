@@ -16,15 +16,24 @@ wget ${util_base_url}/sh/${util_url_suffix}
 cd ../
 fi
 }
-init;
+ init;
 
 
 source common/base.sh;
 ################## 正文 ##################
 
 function next_tips() {
-    warn "修改数据库密码 mysqladmin -uroot -p password \$password "
-    warn "如果mysql 密码修改成功 ;还需要在phpadmin 的config.ini.php 中将密码改成 $1";
+    warn "修改数据库密码 mysqladmin -uroot -p password \$password  密码要复杂"
+    warn "如果mysql 密码修改成功 ;还需要在phpadmin 的config.ini.php ; auth_type 改成cookie (一定要改成cookie ,否则就不能登录)";
+
+     warn "然后 etc/extra/httpd-xampp.con 更改
+Alias /phpmyadmin \"/opt/lampp/phpmyadmin/\"
+<Directory \"/opt/lampp/phpMyAdmin\">
+AllowOverride AuthConfig
+Require all granted";
+
+warn " lampp restartapache"
+    warn "";
 }
 # 命令提示
 
@@ -54,6 +63,7 @@ info '安装xampp';
 ./xampp-linux-x64-7.2.21-0-installer.run
 
 info "开机自启动";
+ln -s /opt/lampp/lampp  /usr/bin/lampp
 ln -s /opt/lampp/xampp  /etc/rc.d/init.d/xampp
 chkconfig --add xampp
 chkconfig xampp on

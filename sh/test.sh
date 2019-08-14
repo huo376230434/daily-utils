@@ -20,15 +20,22 @@ init;
 source common/base.sh;
 ####################### 正文 ######################
 
-echo $1;
 
-if [  -e ./profile -a ! "$1"  ];
-then
 
-echo "执行mysql"
-exit 0;
-fi
-echo "no"
+     warn "然后更改 xampp 配置文件
+Alias /phpmyadmin \"/opt/lampp/phpmyadmin/\"
+<Directory \"/opt/lampp/phpMyAdmin\">
+AllowOverride AuthConfig
+Require all granted";
+#echo $1;
+#
+#if [  -e ./profile -a ! "$1"  ];
+#then
+#
+#echo "执行mysql"
+#exit 0;
+#fi
+#echo "no"
 
 ##调用字符串不存在方法的demo
 #str="export PATH=\"/opt/lampp/bin:\$PATH\""
