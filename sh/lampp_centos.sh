@@ -45,7 +45,7 @@ warn " lampp restartapache"
     success "etc/httpd.conf  中的："
     warn " Include etc/extra/httpd-vhosts.conf取消注释"
     warn "<Directory />
-    AllowOverride none
+     AllowOverride all
     Require all granted
 </Directory>"
     warn "etc/extra/httpd-vhost.conf 加配置";
@@ -56,8 +56,8 @@ warn " lampp restartapache"
 </VirtualHost>";
 warn " lampp restartapache"
 
-info "下面是程序修改，将CustomEnv.php.example 复制 ；改数据库配置!"
-
+warn "下面是程序修改，将CustomEnv.php.example 复制 ；改数据库配置!"
+warn "数据库导入";
 }
 # 命令提示
 
