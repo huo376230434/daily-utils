@@ -57,7 +57,7 @@ warn " lampp restartapache"
 warn " lampp restartapache"
 
 warn "下面是程序修改，将CustomEnv.php.example 复制 ；改数据库配置!"
-warn "数据库导入";
+warn "数据库导入 用ftp上传";
 }
 # 命令提示
 
