@@ -6,11 +6,12 @@ current_dir="$( cd "$( dirname "$0"  )" && pwd  )"
 
 function init() {
   util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
-  util_url_suffix=$current_dir/common/base.sh
-if [ ! -e  $util_url_suffix ]; then
+  util_url_suffix=common/base.sh
+  base_path=$current_dir/$util_url_suffix;
+if [ ! -e  $base_path ]; then
 echo "要请求远程"
 
-    if [ ! -d ./common ] ;then
+    if [ ! -d $current_dir/common ] ;then
         mkdir common;
     fi
 cd common;
@@ -20,7 +21,7 @@ fi
 }
 init;
 
-
+exit 2;
 source $current_dir/common/base.sh;
 ####################### 正文 ######################
 echo $PWD;

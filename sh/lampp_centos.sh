@@ -4,10 +4,11 @@
 
 current_dir="$( cd "$( dirname "$0"  )" && pwd  )"
 
+
 function init() {
   util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
-  util_url_suffix=/common/base.sh
-  base_path=$current_dir$util_url_suffix;
+  util_url_suffix=common/base.sh
+  base_path=$current_dir/$util_url_suffix;
 if [ ! -e  $base_path ]; then
 echo "要请求远程"
 
