@@ -1,8 +1,12 @@
 #!/bin/sh
 
+
+
+current_dir="$( cd "$( dirname "$0"  )" && pwd  )"
+
 function init() {
   util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
-  util_url_suffix=./common/base.sh
+  util_url_suffix=$current_dir/common/base.sh
 if [ ! -e  $util_url_suffix ]; then
 echo "要请求远程"
 
@@ -17,16 +21,17 @@ fi
 init;
 
 
-source common/base.sh;
+source $current_dir/common/base.sh;
 ####################### 正文 ######################
+echo $PWD;
 
-
-
-     warn "然后更改 xampp 配置文件
-Alias /phpmyadmin \"/opt/lampp/phpmyadmin/\"
-<Directory \"/opt/lampp/phpMyAdmin\">
-AllowOverride AuthConfig
-Require all granted";
+must_be_root;
+#
+#     warn "然后更改 xampp 配置文件
+#Alias /phpmyadmin \"/opt/lampp/phpmyadmin/\"
+#<Directory \"/opt/lampp/phpMyAdmin\">
+#AllowOverride AuthConfig
+#Require all granted";
 #echo $1;
 #
 #if [  -e ./profile -a ! "$1"  ];

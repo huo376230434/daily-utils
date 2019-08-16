@@ -39,3 +39,15 @@ if [ $res -eq 0 ] ; then
    echo $1 >> $2;
 fi
 }
+
+#强制为root ,否则退出
+function must_be_root() {
+    user=`whoami`
+    if [ $user != "root" ]; then
+        echo "当前执行用户必须为root";
+        exit 1;
+    fi
+}
+
+
+#current_dir="$( cd "$( dirname "$0"  )" && pwd  )" // 获取当前执行脚本所在目录
