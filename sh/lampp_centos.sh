@@ -2,11 +2,13 @@
 
 ################## 引入 base 函数库 ##################
 
+current_dir="$( cd "$( dirname "$0"  )" && pwd  )"
+
 function init() {
   util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
-  util_url_suffix=./common/base.sh
+  util_url_suffix=$current_dir/common/base.sh
 if [ ! -e  $util_url_suffix ]; then
-info "要请求远程"
+echo "要请求远程"
 
     if [ ! -d ./common ] ;then
         mkdir common;
@@ -16,7 +18,8 @@ wget ${util_base_url}/sh/${util_url_suffix}
 cd ../
 fi
 }
- init;
+init;
+
 
 
 source common/base.sh;
