@@ -75,6 +75,7 @@ next_tips;
 exit 0;
 fi
 
+must_be_root;
 
 yum update -y
 xampp_install_obj=xampp-linux-x64-7.2.21-0-installer.run
