@@ -37,17 +37,18 @@ warn " lampp restartapache"
     warn "mkdir /var/www ";
     warn "cd /var/www";
 
-  success "接代码，recycle_huan / recycle_nt "
-
-    warn "git clone https://git.dev.tencent.com/huo376230434/recycle_huan.git";
-    warn " chmod -R 777 application/cache";
-    warn "chmod -R 777 upload";
-    success "etc/httpd.conf  中的："
+ success "etc/httpd.conf  中的："
     warn " Include etc/extra/httpd-vhosts.conf取消注释"
     warn "<Directory />
      AllowOverride all
     Require all granted
 </Directory>"
+  success "接代码，recycle_huan / recycle_nt "
+
+    warn "git clone https://git.dev.tencent.com/huo376230434/recycle_huan.git";
+    warn " chmod -R 777 application/cache";
+    warn "chmod -R 777 upload";
+
     warn "etc/extra/httpd-vhost.conf 加配置";
     warn "<VirtualHost *:80>
     DocumentRoot \"/var/www/recycle_huan\"
