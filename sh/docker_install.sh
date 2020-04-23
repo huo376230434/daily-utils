@@ -7,7 +7,7 @@ current_dir="$( cd "$( dirname "$0"  )" && pwd  )"
 
 # shellcheck disable=SC2112
 function init() {
-  util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
+  util_base_url=http://luoyexn.xin/daily-utils/
   util_url_suffix=common/base.sh
   base_path=$current_dir/$util_url_suffix;
 if [ ! -e  $base_path ]; then
