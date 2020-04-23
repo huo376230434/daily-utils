@@ -1,14 +1,34 @@
 #!/bin/sh
-# ubuntu 用这个
-function check_system_type() {
-   is_ubuntu=`cat /etc/issue | grep Ubuntu`
-    count=${#is_ubuntu}
-    if  [ $count -gt 0 ];then
-   return 1;
-    else
-return 0;
-  fi
+
+################## 引入 base 函数库 ##################
+
+current_dir="$( cd "$( dirname "$0"  )" && pwd  )"
+
+
+# shellcheck disable=SC2112
+function init() {
+  util_base_url=https://raw.githubusercontent.com/huo376230434/daily-utils/master
+  util_url_suffix=common/base.sh
+  base_path=$current_dir/$util_url_suffix;
+if [ ! -e  $base_path ]; then
+echo "要请求远程"
+
+    if [ ! -d $current_dir/common ] ;then
+        mkdir common;
+    fi
+# shellcheck disable=SC2164
+cd common;
+wget ${util_base_url}/sh/${util_url_suffix}
+cd ../
+fi
 }
+init;
+
+
+
+source common/base.sh;
+################## 正文 ##################
+
 
 check_system_type
 is_ubuntu=$?;

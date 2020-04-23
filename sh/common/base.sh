@@ -51,3 +51,14 @@ function must_be_root() {
 
 
 #current_dir="$( cd "$( dirname "$0"  )" && pwd  )" // 获取当前执行脚本所在目录
+
+# 判断系统是ubuntu 还是centos //粗略判断
+function check_system_type() {
+   is_ubuntu=`cat /etc/issue | grep Ubuntu`
+    count=${#is_ubuntu}
+    if  [ $count -gt 0 ];then
+   return 1;
+    else
+return 0;
+  fi
+}
