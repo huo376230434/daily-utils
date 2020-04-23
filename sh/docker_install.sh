@@ -11,7 +11,7 @@ function init() {
   util_url_suffix=common/base.sh
   base_path=$current_dir/$util_url_suffix;
 if [ ! -e  $base_path ]; then
-echo "要请求远程"
+info "要请求远程拉取shell函数库"
 
     if [ ! -d $current_dir/common ] ;then
         mkdir common;
